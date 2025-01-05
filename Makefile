@@ -10,6 +10,7 @@ LDLIBS_BASE		= $(shell pkg-config --libs sdl2 SDL2_image SDL2_ttf SDL2_mixer)
 
 SRCS			= $(wildcard $(SRC_DIR)/*.c)
 OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRCS:.c=.o)))
+DEPS			= $(OBJS:.o=.d)
 
 ifeq ($(OS),Windows_NT)
 	CFLAGS_DEV	= -O0 -ggdb3 -Wall -Wextra -Werror -Wpedantic -Wwrite-strings -Wconversion \
@@ -32,13 +33,15 @@ CFLAGS		?= $(CFLAGS_BASE) $(CFLAGS_DEV)
 LDLIBS		?= $(LDLIBS_BASE) $(LDLIBS_DEV)
 
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR)
+	@if not exist $(BUILD_DIR) mkdir 
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(SRC_DIR)/%.h | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
 $(TARGET): $(OBJS)
 	$(CC) $^ -o $@ $(LDLIBS)
+
+-include $(DEPS)
 
 .PHONY: all clean run rebuild release
 

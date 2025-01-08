@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "main.h"
+#include "clock.h"
 
 struct Game {
         SDL_Event event;

@@ -1,6 +1,5 @@
 #include "game.h"
 #include "init_sdl.h"
-#include "clock.h"
 
 void game_events(struct Game *g);
 void game_draw(struct Game *g);
@@ -37,6 +36,8 @@ void game_free(struct Game **game) {
         SDL_DestroyWindow((*game)->window);
         (*game)->window = NULL;
 
+        TTF_Quit();
+        IMG_Quit();
         SDL_Quit();
 
         free(*game);

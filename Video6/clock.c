@@ -140,7 +140,7 @@ bool clock_generate_image(struct Clock *c, int image_index,
 
         c->text_surf = TTF_RenderText_Blended(c->font, "0", back_color);
         if (!c->text_surf) {
-            fprintf(stderr, "Error creating a surface: %s\n", SDL_GetError());
+            fprintf(stderr, "Error creating a surface: %s\n", TTF_GetError());
             return false;
         }
 
@@ -179,7 +179,7 @@ bool clock_generate_image(struct Clock *c, int image_index,
 
         c->text_surf = TTF_RenderText_Blended(c->font, "1", front_color);
         if (!c->text_surf) {
-            fprintf(stderr, "Error creating a surface: %s\n", SDL_GetError());
+            fprintf(stderr, "Error creating a surface: %s\n", TTF_GetError());
             return false;
         }
 

@@ -104,7 +104,6 @@ void clock_update_layout(struct Clock *c) {
 bool clock_generate_image(struct Clock *c, int image_index,
                           SDL_Color front_color, SDL_Color back_color,
                           bool color, bool size, bool text) {
-
     int digit_size = size ? DIGIT_SIZE * 2 : DIGIT_SIZE;
 
     if (c->target_surf) {

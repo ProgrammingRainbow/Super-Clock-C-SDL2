@@ -96,15 +96,15 @@ bool clock_generate_image(struct Clock *c, int image_index,
                           SDL_Color front_color, SDL_Color back_color,
                           bool color, bool size) {
 
-    int multiplier = size ? 2 : 1;
+    int digit_size = size ? DIGIT_SIZE * 2 : DIGIT_SIZE;
 
     if (c->target_surf) {
         SDL_FreeSurface(c->target_surf);
         c->target_surf = NULL;
     }
 
-    c->target_surf = SDL_CreateRGBSurface(
-        0, DIGIT_SIZE * multiplier, DIGIT_SIZE * multiplier, 32, 0, 0, 0, 255);
+    c->target_surf =
+        SDL_CreateRGBSurface(0, digit_size, digit_size, 32, 0, 0, 0, 255);
     if (!c->target_surf) {
         fprintf(stderr, "Error creating a target text surface: %s\n",
                 SDL_GetError());
@@ -156,12 +156,12 @@ bool clock_generate_images(struct Clock *c) {
             return false;
         }
 
-        if (!clock_generate_image(c, i, colors[9], colors[10], false, true)) {
+        if (!clock_generate_image(c, i, colors[i % 8], colors[8], true,
+                                  false)) {
             return false;
         }
 
-        if (!clock_generate_image(c, i, colors[i % 8], colors[8], true,
-                                  false)) {
+        if (!clock_generate_image(c, i, colors[9], colors[10], false, true)) {
             return false;
         }
 

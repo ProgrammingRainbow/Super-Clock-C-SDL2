@@ -63,6 +63,7 @@ void game_events(struct Game *g) {
             default:
                 break;
             }
+            break;
         default:
             break;
         }

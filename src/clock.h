@@ -18,8 +18,8 @@ struct Clock {
         struct Digit digits[DIGITS_LENGTH];
         bool enable_color;
         bool enable_large;
-        int layout;
         bool enable_text;
+        int layout;
         bool show_time;
         SDL_TimerID timer;
 };
@@ -27,10 +27,10 @@ struct Clock {
 bool clock_new(struct Clock **clock, SDL_Window *window,
                SDL_Renderer *renderer);
 void clock_free(struct Clock **clock);
-void clock_update_layout(struct Clock *c, bool switch_layout);
 void clock_toggle_color(struct Clock *c);
 void clock_toggle_size(struct Clock *c);
 void clock_toggle_text(struct Clock *c);
+void clock_update_layout(struct Clock *c, bool switch_layout);
 Uint32 clock_timer_event(Uint32 interval, void *param);
 void clock_show_time(struct Clock *c);
 void clock_hide_time(struct Clock *c);

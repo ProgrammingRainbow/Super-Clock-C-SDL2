@@ -3,7 +3,7 @@ BUILD_DIR		= .build
 SRC_DIR			?= src
 CC				?= gcc
 
-CFLAGS_BASE     = -std=c99 -Wstrict-aliasing=3 -Wall -Wextra -Werror \
+CFLAGS_BASE     = -std=c99 -Wstrict-aliasing=2 -Wall -Wextra -Werror \
                   -Wpedantic -Wwrite-strings -Wconversion -Wmissing-declarations \
                   -Wmissing-include-dirs -Wfloat-equal -Wsign-compare -Wundef \
                   -Wcast-align -Wswitch-default -Wimplicit-fallthrough \
@@ -16,6 +16,8 @@ CFLAGS_DEBUG 	= -O0 -g3 -ggdb3 -fno-strict-aliasing -fstack-protector-strong \
 				  -DDEBUG -fno-omit-frame-pointer
 
 LDLIBS_BASE		=
+
+LDLIBS_RELEASE	= -flto
 
 LDLIBS_DEBUG	=
 
@@ -62,7 +64,7 @@ $(TARGET): $(OBJS)
 all: $(TARGET)
 
 release: CFLAGS = $(CFLAGS_BASE) $(CFLAGS_RELEASE)
-release: LDLIBS = $(LDLIBS_BASE)
+release: LDLIBS = $(LDLIBS_BASE) $(LDLIBS_RELEASE)
 release: all
 
 clean:

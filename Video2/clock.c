@@ -129,8 +129,7 @@ bool clock_generate_images(struct Clock *c) {
     return true;
 }
 
-void clock_draw(struct Clock *c) {
-
+void clock_draw(const struct Clock *c) {
     for (int i = 0; i < DIGITS_LENGTH; i++) {
         SDL_RenderCopy(c->renderer, c->images[1], NULL, &c->digits[i].rect);
     }

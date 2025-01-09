@@ -29,6 +29,6 @@ void clock_toggle_size(struct Clock *c);
 void clock_toggle_text(struct Clock *c);
 void clock_update_layout(struct Clock *c);
 void clock_update(struct Clock *c);
-void clock_draw(struct Clock *c);
+void clock_draw(const struct Clock *c);
 
 #endif

@@ -31,10 +31,9 @@ void clock_toggle_color(struct Clock *c);
 void clock_toggle_size(struct Clock *c);
 void clock_toggle_text(struct Clock *c);
 void clock_update_layout(struct Clock *c, bool switch_layout);
-Uint32 clock_timer_event(Uint32 interval, void *param);
 void clock_show_time(struct Clock *c);
 void clock_hide_time(struct Clock *c);
 void clock_update(struct Clock *c);
-void clock_draw(struct Clock *c);
+void clock_draw(const struct Clock *c);
 
 #endif

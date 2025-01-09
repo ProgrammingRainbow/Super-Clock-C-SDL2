@@ -4,6 +4,7 @@ bool clock_generate_image(struct Clock *c, int image_index,
                           SDL_Color front_color, SDL_Color back_color,
                           bool color, bool size, bool text);
 bool clock_generate_images(struct Clock *c);
+Uint32 clock_timer_event(Uint32 interval, void *param);
 
 bool clock_new(struct Clock **clock, SDL_Window *window,
                SDL_Renderer *renderer) {
@@ -389,8 +390,7 @@ void clock_update(struct Clock *c) {
     }
 }
 
-void clock_draw(struct Clock *c) {
-
+void clock_draw(const struct Clock *c) {
     for (int i = 0; i < DIGITS_LENGTH; i++) {
         SDL_RenderCopy(c->renderer,
                        c->images[c->digits[i].digit][i % 8][c->enable_color]
